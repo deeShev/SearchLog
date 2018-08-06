@@ -23,7 +23,7 @@ public class SearchController {
 
     @GetMapping("/search")
     ResponseEntity<FileList> search(@RequestParam("query") String query,
-                                    @RequestParam("path") String rootPath,
+                                    @RequestParam("rootPath") String rootPath,
                                     @RequestParam("extension") String extension) throws IOException {
 
         List<String> paths = searchService.findPaths(rootPath, extension, query);
