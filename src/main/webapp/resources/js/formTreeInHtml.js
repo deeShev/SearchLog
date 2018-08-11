@@ -8,6 +8,7 @@ const createTree = (container, objTree) => {
         throw new Error("An incorrect parameter is passed " + objTree + " , expected object of paths!");
     }
     container.innerHTML = createTreeDom(objTree).innerHTML;
+    addEventToFileTag();
 };
 
 let pathClick;
@@ -27,41 +28,26 @@ const createTreeDom = (objTree) => {
 
         if (key === "") {
             li.innerHTML = "/";
-        } else if (typeof(objTree[key]) !== "string") {
-            li.innerHTML = key;
-        }
-
-        if (typeof(objTree[key]) === "string") {
+        } else if (typeof(objTree[key]) === "string") {
+            ul.className = "listFiles";
             li.className = "File";
             li.setAttribute("PathToFile", objTree[key]);
             li.innerHTML = key;
-
-            /*let a = document.createElement("a");
-            a.setAttribute("href","#");
-            li.appendChild(a);
-            a.innerHTML = key;*/
-            /*li.addEventListener("click",() => {
-                pathClick = objTree[key];
-                console.log(pathClick);
-            });*/
-            li.onclick = function(){
-                alert(this.innerHTML);
-            };
-
-            /*console.log(li);
-            li.onclick = function(){alert("asd")};
-            console.log(li);*/
-
         } else {
+            li.innerHTML = key;
             li.className = "Folder";
         }
+
         let childrenUl = createTreeDom(objTree[key]);
 
-        if (childrenUl) li.appendChild(childrenUl);
+        if (childrenUl) {
+            li.appendChild(childrenUl);
+        }
 
         ul.appendChild(li);
     }
 
+    pathClick = ul;
     return ul;
 };
 
@@ -79,4 +65,19 @@ const isObjectEmpty = (obj) => {
         }
     }
     return true;
+};
+
+const addEventToFileTag = () => {
+    let listFile = document.getElementsByClassName("File");
+    [].forEach.call(listFile, (li) => {
+        li.addEventListener('click', () => {
+            pathClick = li.getAttribute("PathToFile");
+            alert(getPathClick())
+        })
+
+    });
+};
+
+const getPathClick = () => {
+    return pathClick;
 };

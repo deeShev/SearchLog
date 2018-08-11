@@ -1,29 +1,29 @@
 package com.shevelev.model;
 
 public class Page {
-    private String startPageToContentOfFile;
-    private String endPageToContentOfFile;
+    private int startPageToContentOfFile;
+    private int endPageToContentOfFile;
     private String contentOfFile;
 
-    public Page(String startPageToContentOfFile, String endPageToContentOfFile, String contentOfFile) {
+    public Page(int startPageToContentOfFile, int endPageToContentOfFile, String contentOfFile) {
         this.startPageToContentOfFile = startPageToContentOfFile;
         this.endPageToContentOfFile = endPageToContentOfFile;
         this.contentOfFile = contentOfFile;
     }
 
-    public String getStartPageToContentOfFile() {
+    public int getStartPageToContentOfFile() {
         return startPageToContentOfFile;
     }
 
-    public void setStartPageToContentOfFile(String startPageToContentOfFile) {
+    public void setStartPageToContentOfFile(int startPageToContentOfFile) {
         this.startPageToContentOfFile = startPageToContentOfFile;
     }
 
-    public String getEndPageToContentOfFile() {
+    public int getEndPageToContentOfFile() {
         return endPageToContentOfFile;
     }
 
-    public void setEndPageToContentOfFile(String endPageToContentOfFile) {
+    public void setEndPageToContentOfFile(int endPageToContentOfFile) {
         this.endPageToContentOfFile = endPageToContentOfFile;
     }
 

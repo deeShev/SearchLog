@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface ContentService {
 
-    Page getContentOfFilePath(String pathToFile, String startContent, String endContent) throws IOException;
+    Page getContentOfFilePath(String pathToFile, int startContent, int endContent) throws IOException;
 }
