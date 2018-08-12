@@ -15,6 +15,9 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+/**
+ * Web mvc application  configuration
+ */
 @Configuration
 @EnableWebMvc
 public class WebMVCConfig implements WebMvcConfigurer {

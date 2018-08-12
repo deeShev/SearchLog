@@ -1,5 +1,5 @@
 /**
- * Сreate a file path tree.
+ * Сreate a file currentPath tree.
  * @param container - container in html file
  * @param objTree - object of paths
  */
@@ -13,15 +13,15 @@ const createTree = (container, objTree) => {
 
 let pathClick;
 /**
- * Create a path tree from the tags: ul and li
- * @param objTree
+ * Create a currentPath tree from the tags: ul and li
+ * @param objTree object of paths
  * @return {*}
  */
 const createTreeDom = (objTree) => {
     if (isObjectEmpty(objTree)) return;
 
     let ul = document.createElement('ul');
-    ul.className = "Container";
+    ul.className = "container";
 
     for (let key in objTree) {
         let li = document.createElement('li');
@@ -29,13 +29,13 @@ const createTreeDom = (objTree) => {
         if (key === "") {
             li.innerHTML = "/";
         } else if (typeof(objTree[key]) === "string") {
-            ul.className = "listFiles";
-            li.className = "File";
-            li.setAttribute("PathToFile", objTree[key]);
+            ul.className = "list_files";
+            li.className = "file";
+            li.setAttribute("path_to_file", objTree[key]);
             li.innerHTML = key;
         } else {
             li.innerHTML = key;
-            li.className = "Folder";
+            li.className = "folder";
         }
 
         let childrenUl = createTreeDom(objTree[key]);
@@ -53,7 +53,7 @@ const createTreeDom = (objTree) => {
 
 /**
  * Check for emptiness
- * @param obj
+ * @param obj - object of paths
  * @return {boolean}
  */
 const isObjectEmpty = (obj) => {
@@ -67,17 +67,17 @@ const isObjectEmpty = (obj) => {
     return true;
 };
 
+/**
+ * Adding an Event to a File Node
+ */
 const addEventToFileTag = () => {
-    let listFile = document.getElementsByClassName("File");
+    let listFile = document.getElementsByClassName("file");
     [].forEach.call(listFile, (li) => {
         li.addEventListener('click', () => {
-            pathClick = li.getAttribute("PathToFile");
-            alert(getPathClick())
+            pathClick = li.getAttribute("path_to_file");
+            getContentPage(pathClick);
         })
 
     });
 };
 
-const getPathClick = () => {
-    return pathClick;
-};

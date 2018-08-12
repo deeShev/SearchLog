@@ -1,5 +1,9 @@
 package com.shevelev.model;
 
+/**
+ * The page of the file that contains the beginning
+ * and end of the page of the file and the page's content.
+ */
 public class Page {
     private int startPageToContentOfFile;
     private int endPageToContentOfFile;
@@ -11,27 +15,16 @@ public class Page {
         this.contentOfFile = contentOfFile;
     }
 
-    public int getStartPageToContentOfFile() {
-        return startPageToContentOfFile;
-    }
-
-    public void setStartPageToContentOfFile(int startPageToContentOfFile) {
-        this.startPageToContentOfFile = startPageToContentOfFile;
-    }
-
-    public int getEndPageToContentOfFile() {
-        return endPageToContentOfFile;
-    }
-
-    public void setEndPageToContentOfFile(int endPageToContentOfFile) {
-        this.endPageToContentOfFile = endPageToContentOfFile;
-    }
-
     public String getContentOfFile() {
         return contentOfFile;
     }
 
-    public void setContentOfFile(String contentOfFile) {
-        this.contentOfFile = contentOfFile;
+    @Override
+    public String toString() {
+        return "Page{" +
+                "startPageToContentOfFile=" + startPageToContentOfFile +
+                ", endPageToContentOfFile=" + endPageToContentOfFile +
+                ", contentOfFile='" + contentOfFile + '\'' +
+                '}';
     }
 }

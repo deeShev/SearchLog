@@ -8,11 +8,11 @@ const getTree = (paths) => {
     let indexToArrayPath;
 
     if (paths instanceof Array === false) {
-        throw new Error('An incorrect parameter is passed '+ paths + " , expected array of paths!");
+        throw new Error('An incorrect parameter is passed ' + paths + " , expected array of paths!");
     }
 
     /**
-     * Forming the path object
+     * Forming the currentPath object
      * @param prevDir
      * @param currDir
      * @param i
@@ -23,7 +23,7 @@ const getTree = (paths) => {
 
         if (i === currFilePath.length - 1) {
             prevDir[currDir] = 'file';
-            prevDir[currDir] =  paths[indexToArrayPath];
+            prevDir[currDir] = paths[indexToArrayPath];
         }
 
         if (!prevDir.hasOwnProperty(currDir)) {
@@ -34,9 +34,9 @@ const getTree = (paths) => {
     };
 
     /**
-     *  Converting a path to an array and running the reduce() method to retrieve the object.
+     *  Converting a currentPath to an array and running the reduce() method to retrieve the object.
      *  /file1/file2 => [file1,file2]
-     * @param filePath - path to file
+     * @param filePath - currentPath to file
      * @returns string - file tree
      */
     let parseFilePath = (filePath) => {

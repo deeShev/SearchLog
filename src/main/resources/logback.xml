@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true" scanPeriod="3 seconds">
-	<contextName>SearchLog</contextName>
+<configuration scan="true">
+    <contextName>SearchLog</contextName>
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>
-				%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
-			</pattern>
-		</encoder>
-	</appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
 
-	<jmxConfigurator />
-	<root level="INFO">
-		<appender-ref ref="STDOUT" />
-	</root>
+    <jmxConfigurator/>
 
-	<logger name="com.shevelev" level="ALL" />
+    <logger name="org.springframework" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.shevelev" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <root level="error">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="com.shevelev" level="ALL"/>
 </configuration>

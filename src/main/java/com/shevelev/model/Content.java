@@ -2,6 +2,10 @@ package com.shevelev.model;
 
 import java.util.Map;
 
+/**
+ * The content of the file that contains the path to
+ * the file and the page map of the file.
+ */
 public class Content {
     private String pathToFile;
     private Map<String, Page> contentOfFile;
@@ -10,11 +14,6 @@ public class Content {
         this.pathToFile = pathToFile;
         this.contentOfFile = contentOfFile;
     }
-
-    public Content(String pathToFile) {
-        this.pathToFile = pathToFile;
-    }
-
     public String getPathToFile() {
         return pathToFile;
     }
