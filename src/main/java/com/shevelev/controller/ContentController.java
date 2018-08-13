@@ -31,13 +31,15 @@ public class ContentController {
                                    @RequestParam("endContent") int endContent) {
 
 
-        LOG.info("The user receives the content along the path file", pathFile);
+        LOG.info("The user receives the content along the path file " + pathFile);
         Page resultPage = contentService.getContentOfFilePath(pathFile, startContent, endContent);
-        LOG.info("The user received the content ", resultPage);
+        LOG.info("The user received the content " + resultPage);
 
         if (resultPage == null) {
+            LOG.info("The user received the content " + null);
             return new ResponseEntity<>("Error, you have exceeded the range of the file!", HttpStatus.NOT_FOUND);
         } else {
+            LOG.info("The user received the content " + resultPage);
             return new ResponseEntity<>(resultPage.getContentOfFile(), HttpStatus.OK);
         }
     }

@@ -26,13 +26,19 @@ public class SearchServiceImpl implements SearchService {
      * @param query     search text in the file
      * @return list of file paths
      */
+    @Override
     public List<String> findPaths(String rootPath, String extension, String query) {
-        return findByTextInFiles(query, findFileFromExtension(rootPath, new String[]{extension}));
+        if (new File(rootPath).exists()) {
+            return findByTextInFiles(query, findFileFromExtension(rootPath, new String[]{extension}));
+        } else {
+            return null;
+        }
     }
 
     /**
-     *  Find files with the specified extension
-     * @param rootPath the root of the folder from which the search begins
+     * Find files with the specified extension
+     *
+     * @param rootPath  the root of the folder from which the search begins
      * @param extension extension file
      * @return list of files with the specified extension
      */
@@ -42,6 +48,7 @@ public class SearchServiceImpl implements SearchService {
 
     /**
      * Search for text in the list of files received
+     *
      * @param query search text in the file
      * @param files list of files with the specified extension
      * @return list of files with query
