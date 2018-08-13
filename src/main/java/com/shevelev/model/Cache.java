@@ -16,10 +16,9 @@ public class Cache {
     private Map<String, Content> cacheContent = new HashMap<>();
 
     /**
-     * The procedure for clearing the cache, every 10 minutes
+     * The procedure for clearing the cache, every 5 minutes
      */
-    //@Scheduled(fixedRate = 600000)
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 300000)
     public void clearCache() {
         LOG.info("Begin cleaning the cache!", cacheContent.toString());
         cacheContent.clear();
@@ -46,3 +45,4 @@ public class Cache {
         cacheContent.put(key, value);
     }
 }
+///home/denis/Programs/SearchLog

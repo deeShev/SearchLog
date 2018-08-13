@@ -40,7 +40,15 @@ const getTree = (paths) => {
      * @returns string - file tree
      */
     let parseFilePath = (filePath) => {
-        let fileLocation = filePath.split('/');
+        let fileLocation;
+        /**
+         * check for path in windows
+         */
+        if (filePath.charAt(0) !== "/"){
+            fileLocation = filePath.split('\\');
+        }else {
+            fileLocation = filePath.split('/');
+        }
 
         if (fileLocation.length === 1) {
             fileTree[fileLocation[0]] = 'file';

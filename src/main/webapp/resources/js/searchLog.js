@@ -18,6 +18,8 @@ const searchLog = () => {
     let rootPath = document.getElementById('root-directory').value;
     let extension = document.getElementById('extension').value.replace(/\s+/g, '');
 
+    rootPath = encodeURI(rootPath); //compatibility with windows path
+
     if (Object.is(extension, "")) {
         extension = "log";
     }

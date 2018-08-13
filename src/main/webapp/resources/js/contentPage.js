@@ -30,6 +30,7 @@ const getEndContent = () => {
  * @return {Promise<Response>}
  */
 const getContent = (pathFile, startContent, endContent) => {
+    pathFile = encodeURI(pathFile); // compatibility with windows path
     return fetch(`http://localhost:8080/content?pathFile=${pathFile}&startContent=${startContent}&endContent=${endContent}`);
 };
 
