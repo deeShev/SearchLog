@@ -27,11 +27,18 @@ const searchLog = () => {
     getFilePaths(searchText, extension, rootPath)
         .then(resp => {
             resp.json().then(paths => {
+                let divResultBody = document.getElementsByClassName("result-body").item(0);
+                divResultBody.style.display = 'flex';
+
                 let listFilePaths = getTree(paths);
                 const container = document.getElementById('container');
                 createTree(container, listFilePaths);
 
-            })
+            }).catch(err => {
+                console.log("Search error: " + err);
+                let divResultBody = document.getElementsByClassName("result-body").item(0);
+                divResultBody.style.display = 'none';
+            });
         })
         .catch(err => console.log("Search error: " + err));
 };

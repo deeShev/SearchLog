@@ -24,7 +24,9 @@ const getBackContentPage = (pathToFile) => {
                 }
                 let span = document.getElementById("text_content_span");
                 span.innerText = contentPage;
-            })
-        }).catch(err => console.log("Error retrieving content: " + err))
+            }).catch(err => {
+                console.log("Error retrieving content: " + err);
+            });
+        }).catch(err => console.log("Error retrieving content: " + err));
     }
 };

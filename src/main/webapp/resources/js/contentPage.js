@@ -45,8 +45,8 @@ const getContentPage = (pathToFile) => {
             startContent = 0;
             endContent = SIZE_PAGE;
             addPageInHTML(contentPage);
-        })
-    }).catch(err => console.log("Error retrieving content: " + err))
+        }).catch(err => console.log("Error retrieving content: " + err));
+    }).catch(err => console.log("Error retrieving content: " + err));
 };
 
 /**
