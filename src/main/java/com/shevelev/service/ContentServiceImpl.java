@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 
 /**
  * Implementing the content service
@@ -46,7 +45,7 @@ public class ContentServiceImpl implements ContentService {
 
         if (contentFile != null) {
             if (contentFile.getPathToFile().equals(pathToFile)) {
-                resultPage = contentFile.getContentOfFile().get(keySearchContent);
+                resultPage = contentFile.getPageFromContent(keySearchContent);
             } else {
                 contentFile = new Content(pathToFile);
                 resultPage = formContent(pathToFile, contentFile, startContent, endContent);
@@ -103,10 +102,13 @@ public class ContentServiceImpl implements ContentService {
             }
         } catch (IOException e) {
             LOG.error("Error retrieving page content! ", e);
+            throw new RuntimeException(e);
         } finally {
-            cache.addContentToCache(keySearchContent, contentFile);
+            if (contentFile.getPageFromContent(keySearchContent) != null) {
+                cache.addContentToCache(keySearchContent, contentFile);
+            }
         }
-        return contentFile.getContentOfFile().get(keySearchContent);
+        return contentFile.getPageFromContent(keySearchContent);
     }
 
     /**
@@ -136,7 +138,6 @@ public class ContentServiceImpl implements ContentService {
                                        int startPositionPage, int endPositionPage) {
         int endInterval;
 
-        Map<String, Page> contentOfFileHashMap = contentFile.getContentOfFile();
         StringBuilder intervalTmpContent = new StringBuilder(contentPage);
 
         if (tmpContent == null) {
@@ -153,7 +154,7 @@ public class ContentServiceImpl implements ContentService {
         contentPage.append(intervalTmpContent, 0, endInterval);
         intervalTmpContent.delete(0, endInterval);
 
-        contentOfFileHashMap.put(startPositionPage + String.valueOf(endPositionPage), new Page(startPositionPage, endPositionPage, contentPage.toString()));
+        contentFile.addPageToContent(startPositionPage + String.valueOf(endPositionPage), new Page(startPositionPage, endPositionPage, contentPage.toString()));
         startPositionPage += SIZE_ONE_PAGE;
 
         contentPage.setLength(0);

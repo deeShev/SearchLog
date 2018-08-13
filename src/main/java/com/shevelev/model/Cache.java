@@ -45,4 +45,3 @@ public class Cache {
         cacheContent.put(key, value);
     }
 }
-///home/denis/Programs/SearchLog

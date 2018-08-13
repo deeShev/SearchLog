@@ -19,7 +19,23 @@ public class Content {
         return pathToFile;
     }
 
-    public Map<String, Page> getContentOfFile() {
-        return contentOfFile;
+    /**
+     * Get page by key
+     *
+     * @param key the key whose associated value is to be returned
+     * @return page value
+     */
+    public Page getPageFromContent(String key) {
+        return contentOfFile.get(key);
+    }
+
+    /**
+     * Add page to the content
+     *
+     * @param key   key with which the specified value is to be associated
+     * @param value value to be associated with the specified key
+     */
+    public void addPageToContent(String key, Page value) {
+        contentOfFile.put(key, value);
     }
 }
