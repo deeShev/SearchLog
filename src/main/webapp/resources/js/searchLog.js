@@ -31,7 +31,7 @@ const searchLog = () => {
 
             })
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("Search error: " + err));
 };
 
 

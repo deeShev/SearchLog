@@ -15,14 +15,16 @@ const getBackContentPage = (pathToFile) => {
 
         getContent(pathToFile, startContent, endContent).then(resp => {
             resp.json().then(contentPage => {
-                if (document.getElementById("next_button").disabled){
-                    document.getElementById("next_button").disabled = false;
-                }else if (startContent === 0 && endContent === SIZE_PAGE){
-                    document.getElementById("back_button").disabled = true;
+                let buttonStyle = getComputedStyle(document.getElementById("next_button"));
+                if (buttonStyle.pointerEvents === "none") {
+                    establishVisibility(document.getElementById("next_button"), "visible");
+                }
+                if (startContent === 0 && endContent === SIZE_PAGE) {
+                    establishVisibility(document.getElementById("back_button"), "none");
                 }
                 let span = document.getElementById("text_content_span");
                 span.innerText = contentPage;
             })
-        }).catch(err => console.log(err))
+        }).catch(err => console.log("Error retrieving content: " + err))
     }
 };

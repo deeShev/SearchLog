@@ -1,12 +1,10 @@
 package com.shevelev.config;
 
-import com.shevelev.model.CacheServer;
+import com.shevelev.model.Cache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import java.util.HashMap;
 
 /**
  * Application context configuration
@@ -18,20 +16,10 @@ public class AppConfig {
 
     /**
      * Application cache bins
-     * @return instance of a class CacheServer
+     * @return instance of a class Cache
      */
     @Bean
-    public CacheServer cacheContent() {
-        return new CacheServer(new HashMap<>());
+    public Cache cacheContent() {
+        return new Cache();
     }
-
-    /**
-     * Bean cache cleaning
-     * @return instance of a class ClearingCacheServer
-     */
-    @Bean
-    public ClearingCacheServer clearingCacheServer(){
-        return new ClearingCacheServer();
-    }
-
 }

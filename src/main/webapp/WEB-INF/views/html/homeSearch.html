@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DeeShevCompany</title>
     <script type="text/javascript" src="/resources/js/searchLog.js" defer charset="UTF-8"></script>
     <script type="text/javascript" src="/resources/js/formObjectTree.js" defer charset="UTF-8"></script>
     <script type="text/javascript" src="/resources/js/formTreeInHtml.js" defer charset="UTF-8"></script>
@@ -10,20 +10,32 @@
     <script type="text/javascript" src="/resources/js/backContentPage.js" defer charset="UTF-8"></script>
     <script type="text/javascript" src="/resources/js/nextContentPage.js" defer charset="UTF-8"></script>
     <script type="text/javascript" src="/resources/js/highlightContent.js" defer charset="UTF-8"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
 
-<div>
-    <label>Text:</label>
-    <input type="text" id="search-text">
-    <label>Root:</label>
-    <input type="text" id="root-directory">
-    <label>Extension:</label>
-    <input type="text" id="extension">
-    <button id="search" onclick="searchLog()">Search</button>
-    <div id="container"></div>
-    <div id="content">
-
+<div class="main-content">
+    <div class="input-container">
+        <label>Text:</label>
+        <div class="input-row">
+            <input type="text" id="search-text">
+        </div>
+        <label>Root:</label>
+        <div class="input-row">
+            <input type="text" id="root-directory" placeholder="/home/">
+        </div>
+        <label>Extension:</label>
+        <div class="input-row">
+            <input type="text" id="extension" placeholder="log">
+        </div>
+        <div id="search" onclick="searchLog()" class="button">Search</div>
+    </div>
+    <div class="separate"></div>
+    <div class="result-body">
+        <div id="container"></div>
+        <div class="result-window">
+            <div id="content"></div>
+        </div>
     </div>
 </div>
 </body>

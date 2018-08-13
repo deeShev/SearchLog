@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *  Rest controller to get the page
- *  http://localhost:8080/content?pathFile=${pathFile}&startContent=${startContent}&endContent=${endContent}
+ * Rest controller to get the page
+ * http://localhost:8080/content?pathFile=${pathFile}&startContent=${startContent}&endContent=${endContent}
  */
 @RestController
 public class ContentController {
@@ -32,9 +32,9 @@ public class ContentController {
 
 
         LOG.info("The user receives the content along the path file", pathFile);
-
         Page resultPage = contentService.getContentOfFilePath(pathFile, startContent, endContent);
         LOG.info("The user received the content ", resultPage);
+
         if (resultPage == null) {
             return new ResponseEntity<>("Error, you have exceeded the range of the file!", HttpStatus.NOT_FOUND);
         } else {

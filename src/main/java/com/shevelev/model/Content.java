@@ -1,5 +1,6 @@
 package com.shevelev.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,12 +9,12 @@ import java.util.Map;
  */
 public class Content {
     private String pathToFile;
-    private Map<String, Page> contentOfFile;
+    private Map<String, Page> contentOfFile = new HashMap<>();
 
-    public Content(String pathToFile, Map<String, Page> contentOfFile) {
+    public Content(String pathToFile) {
         this.pathToFile = pathToFile;
-        this.contentOfFile = contentOfFile;
     }
+
     public String getPathToFile() {
         return pathToFile;
     }

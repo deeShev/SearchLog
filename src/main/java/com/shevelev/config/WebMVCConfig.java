@@ -21,6 +21,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 public class WebMVCConfig implements WebMvcConfigurer {
+    private static final String CHARACTER_ENCODING = "UTF-8";
     private static final String VIEWS = "/WEB-INF/views/";
 
     private static final String RESOURCES_LOCATION = "/resources/";
@@ -48,6 +49,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
         templateResolver.setPrefix(VIEWS);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
+        templateResolver.setCharacterEncoding(CHARACTER_ENCODING);
         return templateResolver;
     }
 
@@ -55,6 +57,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCharacterEncoding(CHARACTER_ENCODING);
         return viewResolver;
     }
 

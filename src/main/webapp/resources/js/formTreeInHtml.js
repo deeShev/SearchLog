@@ -7,7 +7,16 @@ const createTree = (container, objTree) => {
     if (objTree instanceof Object === false) {
         throw new Error("An incorrect parameter is passed " + objTree + " , expected object of paths!");
     }
-    container.innerHTML = createTreeDom(objTree).innerHTML;
+
+    let ul = document.getElementById("firstUL");
+    if (ul === null) {
+        ul = document.createElement('ul');
+        ul.id = "firstUL";
+        ul.className = "container";
+        container.appendChild(ul);
+        ul.innerHTML = createTreeDom(objTree).innerHTML;
+    }
+    ul.innerHTML = createTreeDom(objTree).innerHTML;
     addEventToFileTag();
 };
 
@@ -26,15 +35,18 @@ const createTreeDom = (objTree) => {
     for (let key in objTree) {
         let li = document.createElement('li');
 
-        if (key === "") {
-            li.innerHTML = "/";
-        } else if (typeof(objTree[key]) === "string") {
+
+        if (typeof(objTree[key]) === "string") {
             ul.className = "list_files";
             li.className = "file";
             li.setAttribute("path_to_file", objTree[key]);
             li.innerHTML = key;
         } else {
-            li.innerHTML = key;
+            if (key === "") {
+                li.innerHTML = "/";
+            } else {
+                li.innerHTML = key;
+            }
             li.className = "folder";
         }
 

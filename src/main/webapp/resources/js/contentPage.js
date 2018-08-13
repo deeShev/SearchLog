@@ -1,4 +1,4 @@
-const SIZE_PAGE = 10; //Number of items per page
+const SIZE_PAGE = 500; //Number of items per page
 
 let currentPath;
 let startContent;
@@ -45,7 +45,7 @@ const getContentPage = (pathToFile) => {
             endContent = SIZE_PAGE;
             addPageInHTML(contentPage);
         })
-    }).catch(err => console.log(err))
+    }).catch(err => console.log("Error retrieving content: " + err))
 };
 
 /**
@@ -54,20 +54,23 @@ const getContentPage = (pathToFile) => {
  */
 const addPageInHTML = (contentPage) => {
     let div = document.getElementById("content");
-    let p = document.getElementById("text_content");
+    let divContentPage = document.getElementById("content_page");
     let span = document.getElementById("text_content_span");
     if (span != null) {
         span.innerText = contentPage;
-        document.getElementById("next_button").disabled = false;
-        document.getElementById("back_button").disabled = true;
+        establishVisibility(document.getElementById("next_button"), "visible");
+        establishVisibility(document.getElementById("back_button"), "none");
     } else {
-        p = document.createElement("p");
-        p.id = "text_content";
+        let divResultWindow = document.getElementsByClassName("result-window");
+        divContentPage = document.createElement("div");
+        divContentPage.id = "content_page";
+        divResultWindow[0].insertBefore(divContentPage, div);
+
         span = document.createElement("span");
         span.id = "text_content_span";
         span.innerText = contentPage;
-        p.appendChild(span);
-        div.appendChild(p);
+
+        divContentPage.appendChild(span);
         addButton(div);
         addEventToButton();
     }
@@ -78,9 +81,9 @@ const addPageInHTML = (contentPage) => {
  * @param element
  */
 const addButton = (element) => {
-    let buttonBack = settingButton("back_button", "navigation_button", "Back", true);
-    let buttonNext = settingButton("next_button", "navigation_button", "Next", false);
-    let buttonHighlight = settingButton("highlight_button", "navigation_button", "Select all", false);
+    let buttonBack = settingButton("back_button", "navigation_button", "Back", "none");
+    let buttonNext = settingButton("next_button", "navigation_button", "Next", "visible");
+    let buttonHighlight = settingButton("highlight_button", "navigation_button", "Select all", "visible");
     addButtonInRootElement(element, [buttonBack, buttonNext, buttonHighlight]);
 
 };
@@ -104,11 +107,12 @@ const addButtonInRootElement = (element, arrayButtons) => {
  * Setting buttons
  */
 const settingButton = (idButton, classNameButton, value, disabled) => {
-    let button = document.createElement("button");
+    let button = document.createElement("div");
     button.id = idButton;
     button.className = classNameButton;
     button.innerText = value;
-    button.disabled = disabled;
+    establishVisibility(button, disabled);
+
     return button;
 };
 
@@ -129,4 +133,20 @@ const addEventToButton = () => {
         })
 
     });
+};
+
+/**
+ * Setting the Button Visibility
+ * @param element - document element DOM
+ * @param value - the visibility value in the program is used : "none" or "visible"
+ */
+const establishVisibility = (element, value) => {
+    let button = element;
+    if (value === "none") {
+        button.style.pointerEvents = "none";
+        button.style.opacity = "0.4";
+    } else {
+        button.style.pointerEvents = "visible";
+        button.style.opacity = "1.0";
+    }
 };
